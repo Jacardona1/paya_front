@@ -16,14 +16,14 @@ export default {
 
     }
   },
-  beforeCreate: function () {
-    if (!this.$session.exists()) {
-      this.$router.push('/login')
-    }else{
-      this.$router.push('/inicio')
-
-    }
-  },
+  // beforeCreate: function () {
+  //   if (!this.$session.exists()) {
+  //     this.$router.push('/login')
+  //   }else{
+  //     this.$router.push('/inicio')
+  //
+  //   }
+  // },
 }
 
 </script>

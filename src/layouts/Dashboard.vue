@@ -1,7 +1,6 @@
-
 <template>
     <div>
-        <aside id="left-panel" class="left-panel">
+        <aside id="left-panel" class="left-panel" style="width: 18%;">
             <nav class="navbar navbar-expand-sm navbar-default">
 
                 <div class="navbar-header">
@@ -37,7 +36,7 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder"></i>Administracion</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-building-o"></i><a href="tables-basic.html">Empresas</a></li>
+                                <li><i class="fa fa-building-o"></i><router-link to="/administracion/empresas">Empresas</router-link></li>
                                 <li><i class="fa fa-users"></i><a href="tables-data.html">Empleados</a></li>
                                 <li><i class="fa fa-users"></i><a href="tables-data.html">Clientes</a></li>
                             </ul>
@@ -57,7 +56,7 @@
 
         <!-- Right Panel -->
 
-        <div id="right-panel" class="right-panel">
+        <div id="right-panel" class="right-panel" style="width: 82%;">
 
             <!-- Header-->
             <header id="header" class="header">
@@ -185,34 +184,11 @@
 
             </header><!-- /header -->
             <!-- Header-->
-
-            <div class="breadcrumbs">
-                <div class="col-sm-4">
-                    <div class="page-header float-left">
-                        <div class="page-title">
-                            <h1>Dashboard</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="page-header float-right">
-                        <div class="page-title">
-                            <ol class="breadcrumb text-right">
-                                <li class="active">Dashboard</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content mt-3">
-
             <router-view/>
+        </div><!-- /#right-panel -->
+
+        <!-- Right Panel -->
     </div>
-
-        </div> <!-- .content -->
-    </div><!-- /#right-panel -->
-
 </template>
 
 <script>
@@ -241,6 +217,14 @@
                   console.error(error);
               }
             }
-        }
+        },
+        beforeCreate: function () {
+            if (!this.$session.exists()) {
+                this.$router.push('/login')
+            }else{
+                this.$router.push('/inicio')
+
+            }
+        },
     }
 </script>

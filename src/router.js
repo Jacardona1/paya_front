@@ -20,6 +20,11 @@ export default new Router({
       path: '/inicio',
       name: 'inicio',
       component: () => import('./views/Inicio.vue')
+    },
+    {
+      path: '/administracion/empresas',
+      name: 'AdministracionEmpresa',
+      component: () => import('./views/Administracion/Empresa.vue')
     }
   ]
 })

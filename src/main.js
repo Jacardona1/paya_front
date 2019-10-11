@@ -7,12 +7,11 @@ import VueAxios from 'vue-axios'
 import layoutLogin from "./layouts/Login"
 import layoutDashboard from "./layouts/Dashboard"
 import VueSession from 'vue-session'
+import {ClientTable} from 'vue-tables-2';
 
 Vue.use(VueAxios, axios)
 Vue.use(VueSession)
-
-
-
+Vue.use(ClientTable)
 Vue.component("layout-Dashboard",layoutDashboard);
 Vue.component("layout-Login",layoutLogin);
 
