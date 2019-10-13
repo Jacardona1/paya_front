@@ -11,7 +11,10 @@ import {ClientTable} from 'vue-tables-2';
 
 Vue.use(VueAxios, axios)
 Vue.use(VueSession)
-Vue.use(ClientTable)
+Vue.use(ClientTable,{
+      filterByColumn: true,
+    }
+)
 Vue.component("layout-Dashboard",layoutDashboard);
 Vue.component("layout-Login",layoutLogin);
 

@@ -4,7 +4,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Dashboard</h1>
+                        <h1>Maestro empresa</h1>
                     </div>
                 </div>
             </div>
@@ -12,9 +12,9 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Basic table</li>
+                            <li><a href="#">Administracion</a></li>
+                            <li><a href="#">Empresa</a></li>
+                            <li class="active">Maestro</li>
                         </ol>
                     </div>
                 </div>
@@ -26,39 +26,15 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Basic Table</strong>
+                            <strong class="card-title">Lista empresa</strong>
                         </div>
                         <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div id="people">
+                                <v-client-table :data="tableData" :columns="columns" :options="options">
+                                    <a slot="edit"  slot-scope="props" class="fa fa-edit fa-lg action" :href="props.row.id"></a>
+                                    <a slot="delete"  slot-scope="props" class="fa fa-eraser fa-lg action" :href="props.row.id"></a>
+                                </v-client-table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,13 +44,34 @@
     </div>
 
 </template>
+<style>
+    .td-accion {
+        text-align: center;
+
+    }
+</style>
 <script>
     export default {
         name: 'empresa',
         data() {
             return {
-                columns: ['id', 'name', 'age'],
+                columns: ['name', 'age','edit','delete'],
                 tableData: [
+                    {id: 1, name: "John", age: "20"},
+                    {id: 2, name: "Jane", age: "24"},
+                    {id: 3, name: "Susan", age: "16"},
+                    {id: 4, name: "Chris", age: "55"},
+                    {id: 5, name: "Dan", age: "40"},
+                    {id: 1, name: "John", age: "20"},
+                    {id: 2, name: "Jane", age: "24"},
+                    {id: 3, name: "Susan", age: "16"},
+                    {id: 4, name: "Chris", age: "55"},
+                    {id: 5, name: "Dan", age: "40"},
+                    {id: 1, name: "John", age: "20"},
+                    {id: 2, name: "Jane", age: "24"},
+                    {id: 3, name: "Susan", age: "16"},
+                    {id: 4, name: "Chris", age: "55"},
+                    {id: 5, name: "Dan", age: "40"},
                     {id: 1, name: "John", age: "20"},
                     {id: 2, name: "Jane", age: "24"},
                     {id: 3, name: "Susan", age: "16"},
@@ -82,7 +79,31 @@
                     {id: 5, name: "Dan", age: "40"}
                 ],
                 options: {
-                    // see the options API
+                    columnsClasses: {edit: "td-accion",delete:"td-accion"},
+
+                    headings: {
+                        name: 'Country Name',
+                        age: 'Country Code',
+                        id: 'Editar',
+                        edit: 'Editar',
+                        delete: 'Eliminar'
+                    },
+                    texts : {
+                        count: "Mostrando {from} a {to} de {count} registros|{count} registros|Un registro",
+                        first: 'primero',
+                        last: 'ultimo',
+                        filter: "Filtro:",
+                        filterPlaceholder: "Busqueda",
+                        limit: "Registro:",
+                        page: "Paginas:",
+                        noResults: "No se encontraron registros",
+                        filterBy: "Filtrar por {column}",
+                        loading: 'Cargando...',
+                        defaultOption: 'Seleccionada {column}',
+                        columns: 'Columnas'
+                    },
+                    sortable: ['name', 'age'],
+                    filterable: ['name', 'age'],
                 }
             }
         }
