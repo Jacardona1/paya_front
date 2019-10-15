@@ -155,7 +155,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
 
-                                <a class="nav-link" v-on:click.stop="logout"><i class="fa fa-power-off" v-on:click="logout"></i> Logout</a>
+                                <a class="nav-link" v-on:click="logout"><i class="fa fa-power-off"></i> Logout</a>
                             </div>
                         </div>
 
