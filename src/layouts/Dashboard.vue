@@ -37,7 +37,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder"></i>Administracion</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-building-o"></i><router-link to="/administracion/empresas">Empresas</router-link></li>
-                                <li><i class="fa fa-users"></i><a href="tables-data.html">Empleados</a></li>
+                                <li><i class="fa fa-users"></i><router-link to="/administracion/empleados">Empleados</router-link></li>
                                 <li><i class="fa fa-users"></i><a href="tables-data.html">Clientes</a></li>
                             </ul>
                         </li>

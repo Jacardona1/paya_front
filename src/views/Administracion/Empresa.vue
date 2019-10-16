@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Lista empresa</strong>
+                            <strong class="card-title">Lista empresas</strong>
                             <button type="button" data-toggle="modal" data-target="#newModal" class="btn btn-success" style="float: right;">Nuevo <i class="fa fa-plus"></i></button>
                         </div>
                         <div class="card-body">
@@ -335,7 +335,6 @@
             }
         },
         async beforeMount() {
-            console.log(process.env.VUE_APP_API_SERVER)
             this.load()
         }
     }
