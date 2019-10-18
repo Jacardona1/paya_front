@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Lista empleados</strong>
-                                <!--<button type="button" data-toggle="modal" data-target="#newModal" class="btn btn-success" style="float: right;">Nuevo <i class="fa fa-plus"></i></button>-->
+                                <button type="button" data-toggle="modal" data-target="#newModal" class="btn btn-success" style="float: right;">Nuevo <i class="fa fa-plus"></i></button>
                             </div>
                             <div class="card-body">
                                 <div id="people">
@@ -53,13 +53,13 @@
         </div><!-- .content -->
 
 
-        <button data-toggle="modal" data-target="#editModal" ref="openModalEdit">olaaaa</button>
+        <!--<button data-toggle="modal" data-target="#newModal" >olaaaa</button>-->
 
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+        <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="largeModalLabel">Editar Empleado</h5>
+                        <h5 class="modal-title" id="largeModalLabel">Nuevo Empleado</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -68,45 +68,45 @@
                         <form>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Tipo documento:</label>
-                                <select id="tipoDocumento" name="tipoDocumento"  class="form-control">
+                                <select v-model="newData.tipoDocumento" id="tipoDocumento" name="tipoDocumento"  class="form-control">
                                     <option>Cédula ciudadanía</option>
                                     <option>Targeta identidad</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Numero documento:</label>
-                                <input type="number" id="numeroDocumento" name="numeroDocumento"  class="form-control">
+                                <input v-model="newData.numeroDocumento" type="number" id="numeroDocumento" name="numeroDocumento"  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Nombres:</label>
-                                <input type="text" id="nombres" name="nombres"  class="form-control">
+                                <input v-model="newData.nombres" type="text" id="nombres" name="nombres"  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Apellidos:</label>
-                                <input type="text" id="apellidos" name="apellidos"  class="form-control">
+                                <input v-model="newData.apellidos" type="text" id="apellidos" name="apellidos"  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Teléfono:</label>
-                                <input type="number" id="telefono" name="telefono"  class="form-control">
+                                <input v-model="newData.telefono" type="number" id="telefono" name="telefono"  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Dirección:</label>
-                                <input type="text" id="direccion" name="direccion"  class="form-control">
+                                <input v-model="newData.direccion" type="text" id="direccion" name="direccion"  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Email:</label>
-                                <input type="email" id="email" name="email"  class="form-control">
+                                <input v-model="newData.email" type="email" id="email" name="email"  class="form-control">
                             </div>
                             <div class="form-group col-md-12">
                                 <hr>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Contraseña:</label>
-                                <input type="text" id="contrasena" name="contrasena"  class="form-control">
+                                <input v-model="newData.contrasena"  type="text" id="contrasena" name="contrasena"  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Confirmar contraseña:</label>
-                                <input type="email" id="confirmar" name="confirmar"  class="form-control">
+                                <input v-model="newData.confirmar" type="email" id="confirmar" name="confirmar"  class="form-control">
                             </div>
                         </form>
                     </div>
@@ -161,6 +161,17 @@
                     sortable: ['nombres', 'apellidos'],
                     filterable: ['nombres','apellidos','numero_documento'],
                 },
+                newData : {
+                    tipoDocumento : '',
+                    numeroDocumento : '',
+                    nombres: '',
+                    apellidos: '',
+                    direccion : '',
+                    telefono : '',
+                    email : '',
+                    contrasena : '',
+                    confirmar : ''
+                }
             }
         },
         methods:{
