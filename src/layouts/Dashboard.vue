@@ -38,7 +38,7 @@
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-building-o"></i><router-link to="/administracion/empresas">Empresas</router-link></li>
                                 <li><i class="fa fa-users"></i><router-link to="/administracion/empleados">Empleados</router-link></li>
-                                <li><i class="fa fa-users"></i><a href="tables-data.html">Clientes</a></li>
+                                <li><i class="fa fa-users"></i><router-link to="/administracion/clientes">Clientes</router-link></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">

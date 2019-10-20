@@ -4,7 +4,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Maestro empleado</h1>
+                        <h1>Maestro cliente</h1>
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Administracion</a></li>
-                            <li><a href="#">Empleado</a></li>
+                            <li><a href="#">Cliente</a></li>
                             <li class="active">Maestro</li>
                         </ol>
                     </div>
@@ -27,7 +27,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Lista empleados</strong>
+                                <strong class="card-title">Lista Clientes</strong>
                                 <button type="button" data-toggle="modal" data-target="#newModal"
                                         class="btn btn-success" style="float: right;">Nuevo <i class="fa fa-plus"></i>
                                 </button>
@@ -64,7 +64,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="largeModalLabel">Editar Empleado</h5>
+                        <h5 class="modal-title" id="largeModalLabel">Editar Cliente</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -140,7 +140,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="largeModalLabel">Nuevo Empleado</h5>
+                        <h5 class="modal-title" id="largeModalLabel">Nuevo Cliente</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -221,7 +221,7 @@
 </style>
 <script>
     export default {
-        name: 'empresa',
+        name: 'cliente',
         data() {
             return {
                 columns: ['nombres', 'apellidos', 'numero_documento', 'telefono', 'estado', 'edit', 'delete'],
@@ -262,7 +262,7 @@
                     email: '',
                     contrasena: '',
                     confirmar: '',
-                    tipoUsuario: 3,
+                    tipoUsuario: 1,
                 },
                 newData: {
                     tipoDocumento: '',
@@ -274,7 +274,7 @@
                     email: '',
                     contrasena: '',
                     confirmar: '',
-                    tipoUsuario: 3,
+                    tipoUsuario: 1,
                 },
             }
         },
@@ -303,7 +303,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario/3',
+                    url: 'http://127.0.0.1:8000/api/auth/usuario/1',
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     }
@@ -393,7 +393,7 @@
                 }
             },
             reset: function () {
-                    this.newData.id = '',
+                this.newData.id = '',
                     this.newData.tipoDocumento = '',
                     this.newData.numeroDocumento = '',
                     this.newData.nombres = '',
