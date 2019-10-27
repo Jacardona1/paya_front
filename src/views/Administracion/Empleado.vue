@@ -301,9 +301,11 @@
             },
             load: async function () {
                 const token = this.$session.get("dataSession");
+                const user = await this.$userLogin(token.access_token)
+                const id = (user.user_empresa_id?user.user_empresa_id:0)
                 const parameter = {
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario/3',
+                    url: 'http://127.0.0.1:8000/api/auth/usuario/employes/'+id,
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     }

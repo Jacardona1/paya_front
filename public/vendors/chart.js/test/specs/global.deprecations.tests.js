@@ -376,7 +376,7 @@ describe('Deprecations', function() {
 	describe('Version 2.1.5', function() {
 		// https://github.com/chartjs/Chart.js/pull/2752
 		describe('Chart.pluginService', function() {
-			it('should be defined and an alias of Chart.plugins', function() {
+			it('should be defined and an alias of Chart.plugins.js', function() {
 				expect(Chart.pluginService).toBeDefined();
 				expect(Chart.pluginService).toBe(Chart.plugins);
 			});

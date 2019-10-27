@@ -51,7 +51,7 @@
                     if(response.status === 200 && response.data.token_type === 'Bearer'){
                         this.$session.start()
                         this.$session.set('dataSession', response.data)
-                        this.$router.push('/inicio')
+                        this.$router.push('/servicios/activos')
                     }else{
                         console.log(response.status)
                     }

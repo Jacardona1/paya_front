@@ -35,6 +35,11 @@ export default new Router({
       path: '/administracion/clientes',
       name: 'AdministracionCliente',
       component: () => import('./views/Administracion/Cliente.vue')
+    },
+    {
+      path: '/servicios/activos',
+      name: 'Activos',
+      component: () => import('./views/Servicio/Activos.vue')
     }
   ]
 })

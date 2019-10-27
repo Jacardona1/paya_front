@@ -215,7 +215,7 @@ describe('Chart.plugins', function() {
 		});
 	});
 
-	describe('config.options.plugins', function() {
+	describe('config.options.plugins.js', function() {
 		it('should call plugins with options at last argument', function() {
 			var plugin = {id: 'foo', hook: function() {}};
 			var chart = window.acquireChart({
@@ -273,7 +273,7 @@ describe('Chart.plugins', function() {
 			expect(plugins.c.hook.calls.first().args[1]).toEqual({c: '789'});
 		});
 
-		it('should not called plugins when config.options.plugins.{id} is FALSE', function() {
+		it('should not called plugins when config.options.plugins.js.{id} is FALSE', function() {
 			var plugins = {
 				a: {id: 'a', hook: function() {}},
 				b: {id: 'b', hook: function() {}},

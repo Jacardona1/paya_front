@@ -8,6 +8,7 @@ import layoutLogin from "./layouts/Login"
 import layoutDashboard from "./layouts/Dashboard"
 import VueSession from 'vue-session'
 import {ClientTable} from 'vue-tables-2';
+import plugins from "./components/plugins"
 
 Vue.use(VueAxios, axios)
 Vue.use(VueSession)
@@ -15,6 +16,7 @@ Vue.use(ClientTable,{
       filterByColumn: true,
     }
 )
+Vue.use(plugins)
 Vue.component("layout-Dashboard",layoutDashboard);
 Vue.component("layout-Login",layoutLogin);
 

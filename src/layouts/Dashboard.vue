@@ -13,18 +13,15 @@
 
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="index.html"> <i class="menu-icon fa fa-home"></i>Inicio </a>
-                        </li>
-                        <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
+                        <h3 class="menu-title"><center>Panel principal</center> </h3><!-- /.menu-title -->
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Servicios</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-check-square"></i><a href="ui-buttons.html">Activos</a></li>
+                                <li><i class="fa fa-check-square"></i><router-link to="/servicios/activos">Activos</router-link></li>
                                 <li><i class="fa fa-list-ul"></i><a href="ui-badges.html">Historico</a></li>
                             </ul>
                         </li>
-                        <li class="menu-item-has-children dropdown">
+                        <li class="menu-item-has-children dropdown" style="display: none;">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-search"></i>Consultas</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-building-o"></i><a href="tables-basic.html">Empresas</a></li>
@@ -36,9 +33,9 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder"></i>Administracion</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-building-o"></i><router-link to="/administracion/empresas">Empresas</router-link></li>
+                                <li v-show="user.user_tipo_id === 4"><i class="fa fa-building-o"></i><router-link to="/administracion/empresas">Empresas</router-link></li>
                                 <li><i class="fa fa-users"></i><router-link to="/administracion/empleados">Empleados</router-link></li>
-                                <li><i class="fa fa-users"></i><router-link to="/administracion/clientes">Clientes</router-link></li>
+                                <li v-show="user.user_tipo_id === 4"><i class="fa fa-users"></i><router-link to="/administracion/clientes">Clientes</router-link></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
@@ -195,6 +192,11 @@
 
     export default {
         name: 'layouDashboard',
+        data (){
+          return{
+              user:''
+          }
+        },
         methods:{
           async  logout(){
               const token = this.$session.get("dataSession");
@@ -218,11 +220,13 @@
               }
             }
         },
-        beforeCreate: function () {
+        beforeCreate: async function() {
+            const token = this.$session.get("dataSession");
+            this.user = await this.$userLogin(token.access_token)
             if (!this.$session.exists()) {
                 this.$router.push('/login')
             }else{
-                this.$router.push('/inicio')
+                this.$router.push('/servicios/activos')
 
             }
         },
