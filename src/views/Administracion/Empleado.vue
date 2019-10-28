@@ -114,12 +114,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Contraseña:</label>
-                                <input v-model="editData.contrasena" type="text" id="contrasena" name="contrasena"
+                                <input v-model="editData.contrasena" type="text" name="contrasena"
                                        class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Confirmar contraseña:</label>
-                                <input v-model="editData.confirmar" type="email" id="confirmar" name="confirmar"
+                                <input v-model="editData.confirmar" type="email" name="confirmar"
                                        class="form-control">
                             </div>
                         </form>
@@ -149,7 +149,7 @@
                         <form>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Tipo documento:</label>
-                                <select v-model="newData.tipoDocumento" id="tipoDocumento" name="tipoDocumento"
+                                <select v-model="newData.tipoDocumento" name="tipoDocumento"
                                         class="form-control">
                                     <option value="1">Cédula ciudadanía</option>
                                     <option value="2">Targeta identidad</option>
@@ -157,33 +157,39 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Numero documento:</label>
-                                <input v-model="newData.numeroDocumento" type="number" id="numeroDocumento"
+                                <input v-model="newData.numeroDocumento" type="number"
                                        name="numeroDocumento" class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Nombres:</label>
-                                <input v-model="newData.nombres" type="text" id="nombres" name="nombres"
+                                <input v-model="newData.nombres" type="text" name="nombres"
                                        class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Apellidos:</label>
-                                <input v-model="newData.apellidos" type="text" id="apellidos" name="apellidos"
+                                <input v-model="newData.apellidos" type="text" name="apellidos"
                                        class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Teléfono:</label>
-                                <input v-model="newData.telefono" type="number" id="telefono" name="telefono"
+                                <input v-model="newData.telefono" type="number"  name="telefono"
                                        class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Dirección:</label>
-                                <input v-model="newData.direccion" type="text" id="direccion" name="direccion"
+                                <input v-model="newData.direccion" type="text"  name="direccion"
                                        class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Email:</label>
-                                <input v-model="newData.email" type="email" id="email" name="email"
+                                <input v-model="newData.email" type="email"  name="email"
                                        class="form-control">
+                                <div v-show="validateNewData.email != null">
+                                    <br>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ validateNewData.email }}
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group col-md-12">
                                 <hr>
@@ -192,13 +198,25 @@
                                 <label class=" form-control-label">Contraseña:</label>
                                 <input v-model="newData.contrasena" type="text" id="contrasena" name="contrasena"
                                        class="form-control">
+                                <div v-show="validateNewData.contrasena != null">
+                                    <br>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ validateNewData.contrasena }}
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class=" form-control-label">Confirmar contraseña:</label>
                                 <input v-model="newData.confirmar" type="email" id="confirmar" name="confirmar"
                                        class="form-control">
+                            <div v-show="validateNewData.confirmar != null">
+                                <br>
+                                    <div class="alert alert-danger" role="alert">
+                                    {{ validateNewData.confirmar }}
+                                    </div>
                             </div>
-                        </form>
+                        </div>
+                </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="closeModalNew" @click="reset()">
@@ -275,7 +293,19 @@
                     contrasena: '',
                     confirmar: '',
                     tipoUsuario: 3,
+                    empresa: '',
                 },
+                validateNewData:{
+                    tipoDocumento: '',
+                    numeroDocumento: '',
+                    nombres: '',
+                    apellidos: '',
+                    direccion: '',
+                    telefono: '',
+                    email: null,
+                    contrasena: null,
+                    confirmar: null,
+                }
             }
         },
         methods: {
@@ -311,10 +341,12 @@
                     }
                 }
                 const response = await this.axios(parameter);
-                this.tableData = response.data.data
-                console.log(response);
+                this.tableData = response.data.data;
+                this.newData.empresa = id;
             },
             create: async function () {
+              const validation = await this.validate('create')
+                if(validation){
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'post',
@@ -337,7 +369,7 @@
                 } catch (error) {
                     console.error(error);
                 }
-
+                }
             },
             edit: async function (id) {
                 const token = this.$session.get("dataSession");
@@ -404,6 +436,32 @@
                     this.newData.telefono = '',
                     this.newData.email = ''
 
+            },
+            validate:function (form) {
+                let error = true;
+                if(form === 'create'){
+                    if(this.newData.email === ''){
+                        this.validateNewData.email = 'El Campo es requerido';
+                        error = false;
+                    }else{
+                        this.validateNewData.email = null;
+                    }
+                    if(this.newData.contrasena === ''){
+                        this.validateNewData.contrasena = 'El Campo es requerido';
+                        error = false;
+                    }else if(this.newData.contrasena.length < 8){
+                        this.validateNewData.contrasena = 'El Campo es menor a 8 caracteres';
+                        error = false;
+                    }else if(this.newData.contrasena !== this.newData.confirmar){
+                        this.validateNewData.contrasena = null
+                        this.validateNewData.confirmar = 'Las contraseñas no coinciden';
+                        error = false;
+                    }else{
+                        this.validateNewData.confirmar = null
+                        this.validateNewData.contrasena = null
+                    }
+                }
+                return error;
             }
         },
         async beforeMount() {

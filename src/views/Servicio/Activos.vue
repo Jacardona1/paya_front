@@ -237,6 +237,7 @@
                 const token = this.$session.get("dataSession");
                 const user = await this.$userLogin(token.access_token)
                 const id = (user.user_empresa_id?user.user_empresa_id:0)
+                console.log(id)
                 const parameter = {
                     method: 'get',
                     url: 'http://127.0.0.1:8000/api/auth/servicio/'+id,
@@ -251,7 +252,6 @@
                 this.totalLogistica = response.data.data[3]
                 this.totalDistribucion = response.data.data[4]
                 this.totalEntregado = response.data.data[5]
-                console.log(response);
             },
         },
         async beforeMount() {
