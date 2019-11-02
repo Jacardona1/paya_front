@@ -9,9 +9,10 @@ install (Vue, options) {
 
 
     Vue.prototype.$userLogin = async (token) => {
+        const urlServer = process.env.VUE_APP_URL_SERVER
         const parameter = {
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/auth/user',
+            url: urlServer+'user',
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -21,6 +22,7 @@ install (Vue, options) {
         return response.data
     }
 
+    Vue.prototype.$urlServer = process.env.VUE_APP_URL_SERVER;
 
     }
 }

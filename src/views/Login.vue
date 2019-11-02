@@ -40,7 +40,7 @@
             async login(){
                 const parameter = {
                     method: 'post',
-                    url: 'http://127.0.0.1:8000/api/auth/login',
+                    url: this.$urlServer+'login',
                     data: {
                         email: this.email,
                         password: this.password

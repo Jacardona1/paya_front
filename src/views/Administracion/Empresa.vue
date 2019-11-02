@@ -216,7 +216,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/auth/empresa',
+                    url: this.$urlServer+'empresa',
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     }
@@ -228,7 +228,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'delete',
-                    url: 'http://127.0.0.1:8000/api/auth/empresa'+'/'+id,
+                    url: this.$urlServer+'empresa'+'/'+id,
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     },
@@ -248,7 +248,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/auth/empresa'+'/'+id+'/edit',
+                    url: this.$urlServer+'empresa'+'/'+id+'/edit',
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     },
@@ -279,7 +279,7 @@
                 const id = this.editData.id;
                 const parameter = {
                     method: 'put',
-                    url: 'http://127.0.0.1:8000/api/auth/empresa'+'/'+id,
+                    url: this.$urlServer+'empresa'+'/'+id,
                     data : this.editData,
                     headers: {
                         Authorization: "Bearer " + token.access_token
@@ -303,7 +303,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'post',
-                    url: 'http://127.0.0.1:8000/api/auth/empresa',
+                    url: this.$urlServer+'empresa',
                     data : this.newData,
                     headers: {
                         Authorization: "Bearer " + token.access_token

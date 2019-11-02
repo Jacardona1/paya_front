@@ -313,7 +313,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'delete',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario' + '/' + id,
+                    url: this.$urlServer+'usuario' + '/' + id,
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     },
@@ -335,7 +335,7 @@
                 const id = (user.user_empresa_id?user.user_empresa_id:0)
                 const parameter = {
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario/employes/'+id,
+                    url: this.$urlServer+'usuario/employes/'+id,
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     }
@@ -350,7 +350,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'post',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario',
+                    url: this.$urlServer+'usuario',
                     data: this.newData,
                     headers: {
                         Authorization: "Bearer " + token.access_token
@@ -375,7 +375,7 @@
                 const token = this.$session.get("dataSession");
                 const parameter = {
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario' + '/' + id + '/edit',
+                    url: this.$urlServer+'usuario' + '/' + id + '/edit',
                     headers: {
                         Authorization: "Bearer " + token.access_token
                     },
@@ -406,7 +406,7 @@
                 const id = this.editData.id;
                 const parameter = {
                     method: 'put',
-                    url: 'http://127.0.0.1:8000/api/auth/usuario' + '/' + id,
+                    url: this.$urlServer+'usuario' + '/' + id,
                     data: this.editData,
                     headers: {
                         Authorization: "Bearer " + token.access_token

@@ -142,7 +142,7 @@
                     <div class="col-sm-5">
                         <div class="user-area dropdown float-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                                <img class="user-avatar rounded-circle" src="./../../public/images/avatar/avatar.png" alt="User Avatar">
                             </a>
 
                             <div class="user-menu dropdown-menu">
@@ -152,7 +152,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
 
-                                <a class="nav-link" v-on:click="logout"><i class="fa fa-power-off"></i> Logout</a>
+                                <a class="nav-link" href="javascript: void(0);" v-on:click="logout"><i class="fa fa-power-off"></i> Logout</a>
                             </div>
                         </div>
 
@@ -202,7 +202,7 @@
               const token = this.$session.get("dataSession");
               const parameter = {
                   method: 'get',
-                  url: 'http://127.0.0.1:8000/api/auth/logout',
+                  url: this.$urlServer+'logout',
                   headers: {
                       Authorization: "Bearer " + token.access_token
                   }
