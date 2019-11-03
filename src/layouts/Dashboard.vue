@@ -125,13 +125,11 @@
             }
         },
         beforeCreate: async function() {
-            const token = this.$session.get("dataSession");
-            this.user = await this.$userLogin(token.access_token)
             if (!this.$session.exists()) {
                 this.$router.push('/login')
             }else{
-                this.$router.push('/servicios/activos')
-
+                const token = this.$session.get("dataSession");
+                this.user = await this.$userLogin(token.access_token)
             }
         },
     }
