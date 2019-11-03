@@ -17,7 +17,6 @@ install (Vue, options) {
                 Authorization: "Bearer " + token
             }
         }
-        console.log(parameter)
         const response = await Vue.prototype.axios(parameter);
         return response.data
     }

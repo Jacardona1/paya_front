@@ -237,7 +237,6 @@
                 const token = this.$session.get("dataSession");
                 const user = await this.$userLogin(token.access_token)
                 const id = (user.user_empresa_id?user.user_empresa_id:0)
-                console.log(id)
                 const parameter = {
                     method: 'get',
                     url: this.$urlServer+'servicio/'+id,
